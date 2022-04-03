@@ -1,20 +1,27 @@
 package com.dianinec.cursomc.categoria;
 
+import com.dianinec.cursomc.model.Categoria;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/categorias")
+@RequestMapping(value = "/v1")
 public class CategoriaController {
 
-    @GetMapping
+    @Autowired
+    private CategoriaService service;
+
+    @PostMapping("/categoria")
     @ResponseStatus(HttpStatus.OK)
-
-    public String listar(){
-        return "Funcionando";
+    public void create (@RequestBody Categoria categoria){
+       service.create(categoria);
     }
-
+    @GetMapping("/categorias")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Categoria> lista(){
+        return service.lista();
+    }
 }

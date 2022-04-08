@@ -3,29 +3,28 @@ package com.dianinec.cursomc.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
+
+
 
 @Data
 @Entity
-@AllArgsConstructor
+@ToString
 @NoArgsConstructor
-public class Produto {
+@AllArgsConstructor
+public class Produto implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String nome;
+    private String produtoNome;
     private Double preco;
+    private Integer quantidade;
 
-    @ManyToMany
-    @JoinTable(
-            name = "PRODUTO_CATEGORIA",
-            joinColumns = @JoinColumn(name = "produto_id"),
-            inverseJoinColumns = @JoinColumn(name = "categoria_id" )
-    )
-    private List<Categoria> categorias = new ArrayList<>();
-}
+
+
+   }

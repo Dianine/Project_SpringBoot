@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
 
@@ -16,17 +15,19 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Categoria implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String nome;
 
-    @OneToMany (targetEntity = Produto.class, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Produto.class,
+             fetch = FetchType.EAGER)
     @JoinColumn(name = "Id_da_Categoria", referencedColumnName = "id")
     private List<Produto> produtos;
 
 
-   }
+
+}

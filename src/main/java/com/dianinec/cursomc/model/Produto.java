@@ -6,17 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.io.Serializable;
-
-
 
 @Data
 @Entity
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Produto implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Produto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +20,5 @@ public class Produto implements Serializable {
     private String produtoNome;
     private Double preco;
     private Integer quantidade;
-
-
 
    }
